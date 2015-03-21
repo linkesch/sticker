@@ -71,8 +71,8 @@ module.exports = function (grunt) {
         cssmin: {
             dist: {
                 files: {
-                    'dist/css/main.min.css': [
-                        'dist/css/main.css'
+                    'dist/css/sticker.min.css': [
+                        'dist/css/sticker.css'
                     ]
                 }
             }
