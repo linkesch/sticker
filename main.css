@@ -164,17 +164,3 @@ html {
 						stripe-shadow 8.8s 1 forwards cubic-bezier(.88,.87,.74,.49);	
 	-webkit-animation-delay: 0s, 1s;
 }
-
-/*
-.stripe:hover .back {
-	right: 460px;
-	width: 40px;
-	height: 880px;
-	background-position: 0 -420px;
-	transition: all 10s linear;
-}
-
-.stripe:hover .back:after {
-	height: 460px;
-	transition: all 10s linear;
-}*/
