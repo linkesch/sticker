@@ -131,9 +131,16 @@ html {
   background: steelblue;
   overflow: hidden; }
 
+h1 {
+  margin-top: 75px;
+  text-align: center;
+  text-transform: uppercase;
+  font-size: 3em;
+  color: #fff; }
+
 .container {
   width: 500px;
-  margin: 100px auto; }
+  margin: 75px auto; }
 
 .sticker {
   position: relative;
@@ -150,14 +157,6 @@ html {
       line-height: 40px;
       overflow: hidden;
       white-space: nowrap; }
-  .sticker .undercorner {
-    position: absolute;
-    bottom: 0;
-    right: 0;
-    z-index: 0;
-    width: 100%;
-    height: 40px;
-    background: #ccc; }
   .sticker .back {
     position: absolute;
     top: 0;
@@ -176,14 +175,21 @@ html {
       width: 0;
       height: 0;
       box-shadow: -5px 5px 10px -4px rgba(0, 0, 0, 0.8); }
+  .sticker:after {
+    content: '';
+    position: absolute;
+    display: block;
+    bottom: 0;
+    right: 0;
+    z-index: 0;
+    width: 100%;
+    height: 40px;
+    background: #ccc; }
   .sticker:hover .stripe {
     -webkit-animation: corner-stripe 0.5s 1 forwards ease-in, stripe 1.8s 1 forwards cubic-bezier(.88, .87, .74, .49);
             animation: corner-stripe 0.5s 1 forwards ease-in, stripe 1.8s 1 forwards cubic-bezier(.88, .87, .74, .49);
     -webkit-animation-delay: 0s, 0.5s;
             animation-delay: 0s, 0.5s; }
-  .sticker:hover .undercorner {
-    -webkit-animation: corner-undercorner 0.5s 1 forwards ease-in;
-            animation: corner-undercorner 0.5s 1 forwards ease-in; }
   .sticker:hover .back {
     -webkit-animation: corner-back 0.5s 1 forwards ease-in, stripe-back 1.8s 1 forwards cubic-bezier(.88, .87, .74, .49), end-stripe 0.2s 1 forwards ease-out;
             animation: corner-back 0.5s 1 forwards ease-in, stripe-back 1.8s 1 forwards cubic-bezier(.88, .87, .74, .49), end-stripe 0.2s 1 forwards ease-out;
@@ -194,3 +200,6 @@ html {
               animation: corner-back 0.5s 1 forwards ease-in, stripe-shadow 1.8s 1 forwards cubic-bezier(.88, .87, .74, .49);
       -webkit-animation-delay: 0s, 0.5s;
               animation-delay: 0s, 0.5s; }
+  .sticker:hover:after {
+    -webkit-animation: corner-undercorner 0.5s 1 forwards ease-in;
+            animation: corner-undercorner 0.5s 1 forwards ease-in; }
