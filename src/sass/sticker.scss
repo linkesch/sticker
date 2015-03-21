@@ -1,0 +1,125 @@
+$sticker-width: 500px;
+$sticker-height: 40px;
+$speed-corner: 0.5s;
+$speed-stripe: 1.8s;
+$speed-end: 0.2s;
+$sticker-color: #ccc;
+$sticker-back-color: darken($sticker-color, 20%);
+
+@import "animations";
+
+html {
+	font-family: Helvetica, Arial, sans-serif;
+	font-size: 16px;
+	color: #333;
+	background: steelblue;
+	overflow: hidden;
+}
+
+h1 {
+	margin-top: 75px;
+	text-align: center;
+	text-transform: uppercase;
+	font-size: 3em;
+  	color: #fff;
+}
+
+.container {
+	width: $sticker-width;
+	margin: 75px auto;
+}
+
+// Sticker
+.sticker {
+	position: relative;
+	height: $sticker-height;
+
+	// Main part
+	.stripe {
+		position: relative;
+		z-index: 1;
+		background: $sticker-color;
+		height: $sticker-height;
+		width: 100%;
+
+		span {
+			display: block;
+			padding-left: 15px;
+			line-height: $sticker-height;
+			overflow: hidden;
+			white-space: nowrap;
+		}
+	}
+	
+	// Back and corner
+	.back {
+		position: absolute;
+		top: 0;
+		right: 0;
+		z-index: 2;
+		width: 0;
+		height: 0;
+		background: 
+			linear-gradient(
+				224deg, 
+				transparent, 
+				transparent 45%, 
+				transparent 50%, 
+				darken($sticker-back-color, 28%) 50%, 
+				darken($sticker-back-color, 21%) 56%, 
+				darken($sticker-back-color, 14%) 62%, 
+				darken($sticker-back-color, 7%) 80%,
+				$sticker-back-color 100%
+			);
+
+		// Shadow
+		&:after {
+			content: '';
+			position: absolute;
+			top: 0;
+			right: 0;
+			z-index: 1;
+			width: 0;
+			height: 0;
+			box-shadow : -5px 5px 10px -4px rgba(0, 0, 0, .8);
+		}
+	}
+
+	// Small box under unfolding corner
+	&:after {
+		content: '';
+		position: absolute;
+		display: block;
+		bottom: 0;
+		right: 0;
+		z-index: 0;
+		width: 100%;
+		height: $sticker-height;
+		background: $sticker-color;	
+	}
+	
+	&:hover {
+		.stripe {
+			animation: 	corner-stripe $speed-corner 1 forwards ease-in, 
+						stripe $speed-stripe 1 forwards cubic-bezier(.88,.87,.74,.49);
+			animation-delay: 0s, $speed-corner;
+		}
+	
+		.back {
+			animation: 	corner-back $speed-corner 1 forwards ease-in, 
+						stripe-back $speed-stripe 1 forwards cubic-bezier(.88,.87,.74,.49), 
+						end-stripe $speed-end 1 forwards ease-out;	
+			animation-delay: 0s, $speed-corner, $speed-corner+$speed-stripe;
+		
+			&:after {
+				animation: 	corner-back $speed-corner 1 forwards ease-in, 
+							stripe-shadow $speed-stripe 1 forwards cubic-bezier(.88,.87,.74,.49);	
+				animation-delay: 0s, $speed-corner;
+			}
+		}
+
+		&:after {
+			animation: 	corner-undercorner $speed-corner 1 forwards ease-in;
+		}
+	}
+}
